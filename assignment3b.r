@@ -1,0 +1,16 @@
+df<-read.csv("E:/ISMC6137/HealthIns.csv")
+df
+par(mfrow=c(1,1))
+hist(df$MedExpense)
+hist(log(df$MedExpense))
+fit=lm(log(MedExpense) ~ PublicIns + PrivateIns + Illnesses + Age + Female + Urban + Priority + Income + Hisp + Black + Age*Illnesses, data=df)
+summary(fit)
+norm <- rnorm(1000)
+ks.test(norm, fit$res)
+bartlett.test(list(fit$res, fit$fit))
+library(lmtest)  # Breusch-Pagan Test
+bptest(fit)
+library(car)
+vif(fit)
+fit1=glm(log(MedExpense) ~ PublicIns + PrivateIns + Illnesses + Age + Female + Urban + Priority + Income + Hisp + Black + Age*Illnesses, data=df, family=gaussian)
+summary(fit1)
