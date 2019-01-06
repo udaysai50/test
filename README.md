@@ -1,2 +1,2 @@
 # test
-test repo for git commands demonstration
+test repo for storing my assignments, Projects and other sample works
